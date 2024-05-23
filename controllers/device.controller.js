@@ -27,7 +27,7 @@ const getDeviceDetail = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await DeviceService.getDeviceDetail(id);
-    if (!data) throw new Error("Not found post detail");
+    if (!data) throw new Error("Not found device detail");
     const result = { ...defaultResult, result: data };
     return res.status(200).json(result);
   } catch (error) {
@@ -96,7 +96,7 @@ const deleteDevice = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await DeviceService.deleteDevice(id);
-    if (!data) throw new Error("Not found post delete");
+    if (!data) throw new Error("Not found device delete");
     const result = { ...defaultResult, result: data };
     return res.status(200).json(result);
   } catch (error) {

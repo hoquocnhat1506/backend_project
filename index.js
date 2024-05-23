@@ -33,5 +33,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.listen(8000, () => {
-  console.log(`Sever started on port`);
+  console.log(`Server started on port 8000`);
 });

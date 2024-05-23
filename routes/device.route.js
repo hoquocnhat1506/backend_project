@@ -2,21 +2,22 @@ const { Router } = require("express");
 const { DeviceController } = require("../controllers/index");
 const router = Router();
 
-//[GET] Get all posts
+//[GET] Get all devices
 router.get("/", DeviceController.getAllDevices);
 
-//[GET] get post detail
+//[GET] Get device detail
 router.get("/:id", DeviceController.getDeviceDetail);
 
-//[POST] post create a new post
+//[POST] Create a new device
 router.post("/create", DeviceController.postCreateDevice);
-//[PUT] post update a post
+
+//[PUT] Update a device
 router.put("/update/:id", DeviceController.putUpdateDevice);
 
-//[DELETE] delete a post
+//[DELETE] Delete a device
 router.delete("/delete/:id", DeviceController.deleteDevice);
 
-//[DELETE] delete all posts
+//[DELETE] Delete all devices
 router.delete("/delete", DeviceController.deleteAllDevices);
 
 module.exports = router;
