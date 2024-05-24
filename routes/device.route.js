@@ -1,23 +1,20 @@
-const { Router } = require("express");
-const { DeviceController } = require("../controllers/index");
-const router = Router();
+const express = require("express");
+const {
+  getAllDevices,
+  getDeviceDetail,
+  postCreateDevice,
+  putUpdateDevice,
+  deleteAllDevices,
+  deleteDevice,
+} = require("../controllers/device.controller");
 
-//[GET] Get all devices
-router.get("/", DeviceController.getAllDevices);
+const router = express.Router();
 
-//[GET] Get device detail
-router.get("/:id", DeviceController.getDeviceDetail);
-
-//[POST] Create a new device
-router.post("/create", DeviceController.postCreateDevice);
-
-//[PUT] Update a device
-router.put("/update/:id", DeviceController.putUpdateDevice);
-
-//[DELETE] Delete a device
-router.delete("/delete/:id", DeviceController.deleteDevice);
-
-//[DELETE] Delete all devices
-router.delete("/delete", DeviceController.deleteAllDevices);
+router.get("/", getAllDevices);
+router.get("/:id", getDeviceDetail);
+router.post("/create", postCreateDevice);
+router.put("/:id", putUpdateDevice);
+router.delete("/", deleteAllDevices);
+router.delete("/:id", deleteDevice);
 
 module.exports = router;
