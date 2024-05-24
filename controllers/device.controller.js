@@ -1,5 +1,4 @@
 const { DeviceService } = require("../services/index");
-
 const defaultResult = {
   message: "success",
   error: null,
@@ -109,6 +108,18 @@ const deleteDevice = async (req, res) => {
     return res.status(500).json(result);
   }
 };
+const updateDeviceValue = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { value } = req.body;
+
+    const updatedDevice = await DeviceService.putUpdateDevice(id, { value });
+
+    return res.status(200).json(updatedDevice);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   getAllDevices,
@@ -117,4 +128,5 @@ module.exports = {
   putUpdateDevice,
   deleteAllDevices,
   deleteDevice,
+  updateDeviceValue,
 };
