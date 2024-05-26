@@ -7,6 +7,7 @@ const userRoute = require("./routes/user");
 const deviceRoute = require("./routes/device.route");
 const app = express();
 var bodyParser = require("body-parser");
+const { specs, swaggerUi } = require("./configs/swaggerConfig"); // Import specs và swaggerUi từ file cấu hình Swagger
 
 require("dotenv").config();
 
@@ -35,3 +36,6 @@ app.use(bodyParser.json());
 app.listen(8000, () => {
   console.log(`Server started on port 8000`);
 });
+
+//  Swagger UI và các tài liệu API
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
