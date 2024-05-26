@@ -17,35 +17,10 @@ const options = {
     ],
     components: {
       schemas: {
-        User: {
+        Device: {
           type: "object",
           properties: {
-            _id: {
-              type: "string",
-              description: "ID của người dùng",
-            },
-            username: {
-              type: "string",
-              description: "Tên người dùng",
-            },
-            email: {
-              type: "string",
-              description: "Email của người dùng",
-            },
-            admin: {
-              type: "boolean",
-              description: "Quyền admin của người dùng",
-            },
-            createdAt: {
-              type: "string",
-              format: "date-time",
-              description: "Ngày tạo người dùng",
-            },
-            updatedAt: {
-              type: "string",
-              format: "date-time",
-              description: "Ngày cập nhật người dùng",
-            },
+            // Define properties of Device here
           },
         },
       },
