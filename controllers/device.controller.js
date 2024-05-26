@@ -108,16 +108,58 @@ const deleteDevice = async (req, res) => {
     return res.status(500).json(result);
   }
 };
+
 const updateDeviceValue = async (req, res) => {
   try {
     const { id } = req.params;
     const { value } = req.body;
 
-    const updatedDevice = await DeviceService.putUpdateDevice(id, { value });
+    // Tìm thiết bị hiện tại
+    const device = await DeviceService.getDeviceDetail(id);
+    if (!device) {
+      return res.status(404).json({ message: "Device not found" });
+    }
 
-    return res.status(200).json(updatedDevice);
+    // Lưu giá trị hiện tại trước khi cập nhật
+    const previousDevice = { ...device };
+
+    // Cập nhật giá trị mới
+    await DeviceService.putUpdateDevice(id, { value });
+
+    // Lấy thiết bị đã cập nhật
+    const updatedDevice = await DeviceService.getDeviceDetail(id);
+
+    return res.status(200).json({
+      message: "Device value updated successfully",
+      error: null,
+      status: true,
+      result: {
+        previousDevice: {
+          name: previousDevice.name,
+          lat: previousDevice.lat,
+          long: previousDevice.long,
+          address: previousDevice.address,
+          unit: previousDevice.unit,
+          value: previousDevice.value,
+        },
+        updatedDevice: {
+          name: updatedDevice.name,
+          lat: updatedDevice.lat,
+          long: updatedDevice.long,
+          address: updatedDevice.address,
+          unit: updatedDevice.unit,
+          value: updatedDevice.value,
+          updatedAt: updatedDevice.updatedAt,
+        },
+      },
+    });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({
+      message: "failed",
+      error: error.message,
+      status: false,
+      result: null,
+    });
   }
 };
 
