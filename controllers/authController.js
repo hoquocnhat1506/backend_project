@@ -1,8 +1,9 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+//xử lý logic
 
-let refreshToken = []; // Khai báo biến refreshToken
+let refreshToken = [];
 
 const authController = {
   // REGISTER
@@ -15,7 +16,7 @@ const authController = {
       const newUser = new User({
         username: req.body.username,
         email: req.body.email,
-        password: hashedPassword,
+        password: hashedPassword, 
       });
 
       // Save to DB

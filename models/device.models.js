@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//truy vấn dữ liệu
 const DeviceSchema = mongoose.Schema(
   {
     name: {

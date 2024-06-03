@@ -19,9 +19,7 @@ const options = {
       schemas: {
         Device: {
           type: "object",
-          properties: {
-            // Define properties of Device here
-          },
+          properties: {},
         },
       },
     },
